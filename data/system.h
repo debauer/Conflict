@@ -23,7 +23,7 @@ public:
     void SetRamUsage(int d);
 
 public slots:
-    virtual void ProcessData(Carriage *car);
+    void ProcessData(Carriage *car);
 
 };
 

@@ -15,17 +15,16 @@
 #include "driver/absInterface.h"
 #include "driver/uart.h"
 #include "carriage.h"
-#include "data/system.h"
 #include "data/kanal.h"
 #include "data/dfm.h"
+#include "data/system.h"
 
 /*
  *
- * Namenkonvention:
+ * Namenkonvention: (unfertig)
  * updateXYZ() - daten an HW schicken
  * setXYZ() - setze Object Daten, bei Datenänderung Signal: Changed();
  * rcvXYZ() - daten von Interface empfangen
- *
  *
  */
 
@@ -38,7 +37,7 @@ class ConflictCore : public QObject{
     public:
         Dfm dfm;
         Kanal kanal[4];
-        //System system;
+        System system;
         ConflictCore();
         void connectSerial(int port);
         void connectETH(QString ip);

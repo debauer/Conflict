@@ -1,4 +1,4 @@
-#include "channel.h"
+#include "dfm.h"
 
 
 Dfm::Dfm(){
@@ -53,8 +53,4 @@ void Dfm::ProcessData(Carriage *car){
 //            }
 //        }
 //    }
-}
-
-void Dfm::ChangedBean(){
-    emit this->Changed();
 }

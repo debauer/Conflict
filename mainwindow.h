@@ -15,6 +15,8 @@ namespace Ui {
 class MainWindow;
 }
 
+class ConflictCore;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

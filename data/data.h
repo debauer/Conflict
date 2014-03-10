@@ -6,7 +6,8 @@
 #include "../carriage.h"
 
 /*
- *  von dieser klasse sollte jede Datenklasse abgeleitet werden.
+ *  Von dieser Klasse wird jede Datenklasse abgeleitet werden.
+ *  Parant Class of all data Classes
  */
 
 class Data : public QObject{
@@ -17,7 +18,7 @@ public:
 signals:
     void Changed();
 public slots:
-    virtual void ProcessData(Carriage *car) = 0;
+    void ProcessData(Carriage *car);
 };
 
 #endif // DATA_H

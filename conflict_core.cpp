@@ -2,8 +2,19 @@
 
 
 ConflictCore::ConflictCore(){
-    //QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&this->channels,SLOT(ProcessData(Carriage*)));
-    //QObject::connect(&channels, SIGNAL(Changed()),this,SLOT(ChangedData()));
+    QObject::connect(&dfm, SIGNAL(Changed()),this,SLOT(ChangedData()));
+    QObject::connect(&kanal[0], SIGNAL(Changed()),this,SLOT(ChangedData()));
+    QObject::connect(&kanal[1], SIGNAL(Changed()),this,SLOT(ChangedData()));
+    QObject::connect(&kanal[2], SIGNAL(Changed()),this,SLOT(ChangedData()));
+    QObject::connect(&kanal[3], SIGNAL(Changed()),this,SLOT(ChangedData()));
+    QObject::connect(&system, SIGNAL(Changed()),this,SLOT(ChangedData()));
+
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&dfm,SLOT(ProcessData(Carriage*));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[0],SLOT(ProcessData(Carriage*));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[1],SLOT(ProcessData(Carriage*));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[2],SLOT(ProcessData(Carriage*));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3],SLOT(ProcessData(Carriage*));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system,SLOT(ProcessData(Carriage*));
 }
 
 void ConflictCore::connectSerial(int port){

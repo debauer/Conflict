@@ -15,11 +15,9 @@ class Dfm : public Data{
         intValue pulsePerLiter;
         intValue minFlow;
     public:
-        //ChannelBean channels[4];
         Dfm();
     public slots:
-        //void ChangedBean();
-        virtual void ProcessData(Carriage *car);
+        void ProcessData(Carriage *car);
 
 };
 

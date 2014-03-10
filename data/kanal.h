@@ -45,7 +45,7 @@ class Kanal : public Data{
         void setMinTemp (int tId , int value);
 
 public slots:
-        virtual void ProcessData(Carriage *car);
+        void ProcessData(Carriage *car);
 };
 
 #endif // KANAL_H

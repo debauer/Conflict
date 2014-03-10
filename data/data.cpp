@@ -1,10 +1,10 @@
 #include "data.h"
 
-data::data(){
+Data::Data(){
 
 }
 
-void data::SetValue (intValue *ptr, int value){
+void Data::SetValue (intValue *ptr, int value){
     // Min/Max Grenzen überprüfen.
     int newValue;
     if(value <= ptr->max && value >= ptr->min){
