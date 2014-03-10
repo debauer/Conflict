@@ -4,8 +4,6 @@
 #include <QMainWindow>
 #include <QDebug>
 
-#include "ui_conflict.h"
-
 #include "carriage.h"
 
 #include "conflict_core.h"
