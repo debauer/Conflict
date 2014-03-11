@@ -26,7 +26,9 @@ SOURCES += main.cpp\
     conflictwidget.cpp \
     data/dfm.cpp \
     data/kanal.cpp \
-    data/data.cpp
+    data/data.cpp \
+    data/lcd.cpp \
+    data/led.cpp
 
 HEADERS  += fetchThread.h \
     mainwindow.h \
@@ -39,7 +41,9 @@ HEADERS  += fetchThread.h \
     conflictwidget.h \
     data/dfm.h \
     data/kanal.h \
-    data/data.h
+    data/data.h \
+    data/lcd.h \
+    data/led.h
 
 
 FORMS    += mainwindow.ui \

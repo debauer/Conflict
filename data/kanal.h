@@ -21,8 +21,6 @@ class Kanal : public Data{
     public:
         Kanal();
 
-
-
         int getManualPower();
         void setManualPower(int value);
         int getStartupTime();

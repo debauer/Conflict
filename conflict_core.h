@@ -37,7 +37,7 @@ class ConflictCore : public QObject{
     public:
         Dfm dfm;
         Kanal kanal[4];
-        System system;
+        //System system;
         ConflictCore();
         void connectSerial(int port);
         void connectETH(QString ip);
