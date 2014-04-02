@@ -1,7 +1,5 @@
 #ifndef CONFLICT_CORE_H
 #define CONFLICT_CORE_H
-
-
 #include <qextserialport.h>
 #include <qextserialenumerator.h>
 #include <QSignalMapper>
@@ -17,7 +15,7 @@
 #include "carriage.h"
 #include "data/kanal.h"
 #include "data/dfm.h"
-#include "data/system.h"
+#include "data/rechner.h"
 
 /*
  *
@@ -28,6 +26,7 @@
  *
  */
 
+
 class ConflictCore : public QObject{
         Q_OBJECT
     private:
@@ -35,10 +34,12 @@ class ConflictCore : public QObject{
         bool interfaceOpen;
         void connectInterface(QString str);
     public:
+        ConflictCore();
+        Rechner system;
+//        System system;
         Dfm dfm;
         Kanal kanal[4];
-        //System system;
-        ConflictCore();
+
         void connectSerial(int port);
         void connectETH(QString ip);
         void disconnect();

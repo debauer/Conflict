@@ -3,32 +3,32 @@
 
 #include "data.h"
 
-class lcd : public Data{
+class Lcd : public Data{
     Q_OBJECT
 
     intValue backlight      = {0,0,100}; // Backlight helligkeit
     intValue contrast       = {0,0,100}; // Kontrast
-    intValue content[256]   = {0,0,255}; // welcher Inhalt
-    intValue screens[32]    = {0,0,255}; // Wie lange in 0,5s Steps
+    intValue content[256];  // im Konstruktor Initialiert // welcher Inhalt
+    intValue screens[32];   // im Konstruktor Initialiert // Wie lange in 0,5s Steps
 
 public:
-    lcd();
+    Lcd();
 
     void updateLCD(); // Contrast + Backlight
     void updateScreens();
     void updateContent();
 
-    intValue getBacklight();
-    void setBacklight(intValue &value);
+    int  getBacklight();
+    void setBacklight(int value);
 
-    intValue getContrast();
-    void setContrast(intValue &value);
+    int  getContrast();
+    void setContrast(int value);
 
-    intValue getScreens(int id);
-    void setScreens(int id, intValue &value);
+    int  getScreens(int id);
+    void setScreens(int id, int value);
 
-    intValue getContent(int id);
-    void setContent(int id, intValue &value);
+    int  getContent(int id);
+    void setContent(int id, int value);
 
 public slots:
     void ProcessData(Carriage *car);

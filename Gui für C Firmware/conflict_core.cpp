@@ -1,4 +1,4 @@
-#include <conflict_core.h>
+#include "conflict_core.h"
 
 
 ConflictCore::ConflictCore(){
@@ -7,14 +7,14 @@ ConflictCore::ConflictCore(){
     QObject::connect(&kanal[1], SIGNAL(Changed()),this,SLOT(ChangedData()));
     QObject::connect(&kanal[2], SIGNAL(Changed()),this,SLOT(ChangedData()));
     QObject::connect(&kanal[3], SIGNAL(Changed()),this,SLOT(ChangedData()));
-    QObject::connect(&system, SIGNAL(Changed()),this,SLOT(ChangedData()));
+//    QObject::connect(&system, SIGNAL(Changed()),this,SLOT(ChangedData()));
 
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&dfm,SLOT(ProcessData(Carriage*));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[0],SLOT(ProcessData(Carriage*));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[1],SLOT(ProcessData(Carriage*));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[2],SLOT(ProcessData(Carriage*));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3],SLOT(ProcessData(Carriage*));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system,SLOT(ProcessData(Carriage*));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&dfm,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[0],SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[1],SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[2],SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3],SLOT(ProcessData(Carriage*)));
+//    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system,SLOT(ProcessData(Carriage*)));
 }
 
 void ConflictCore::connectSerial(int port){

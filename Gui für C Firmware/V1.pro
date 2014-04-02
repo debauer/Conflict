@@ -22,13 +22,13 @@ SOURCES += main.cpp\
     conflict_core.cpp \
     carriage.cpp \
     driver/uart.cpp \
-    data/system.cpp \
     conflictwidget.cpp \
     data/dfm.cpp \
     data/kanal.cpp \
     data/data.cpp \
     data/lcd.cpp \
-    data/led.cpp
+    data/led.cpp \
+    data/rechner.cpp
 
 HEADERS  += fetchThread.h \
     mainwindow.h \
@@ -37,13 +37,13 @@ HEADERS  += fetchThread.h \
     driver/uart.h \
     driver/absInterface.h \
     structs.h \
-    data/system.h \
     conflictwidget.h \
     data/dfm.h \
     data/kanal.h \
     data/data.h \
     data/lcd.h \
-    data/led.h
+    data/led.h \
+    data/rechner.h
 
 
 FORMS    += mainwindow.ui \

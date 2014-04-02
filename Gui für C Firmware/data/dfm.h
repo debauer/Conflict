@@ -10,6 +10,7 @@
 
 class Dfm : public Data{
     Q_OBJECT
+
     private:
         intValue waterFlow;
         intValue pulsePerLiter;

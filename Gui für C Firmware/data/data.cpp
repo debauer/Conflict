@@ -4,6 +4,9 @@ Data::Data(){
 
 }
 
+void Data::ProcessData(Carriage *car){
+}
+
 void Data::SetValue (intValue *ptr, int value){
     // Min/Max Grenzen überprüfen.
     int newValue;

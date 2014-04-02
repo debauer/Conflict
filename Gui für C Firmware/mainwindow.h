@@ -6,10 +6,10 @@
 
 #include "carriage.h"
 
-#include "conflict_core.h"
 #include "qextserialport.h"
 #include "qextserialenumerator.h"
 #include "QSignalMapper"
+#include "conflict_core.h"
 
 namespace Ui {
 class MainWindow;
