@@ -1,6 +1,6 @@
 #include "kanal.h"
 
-Kanal::Kanal(){
+Kanal::Kanal() : Data(){
     int i;
     for(i = 0;i<24;i++){
         maxTemp[i].max = 255;
@@ -14,6 +14,46 @@ Kanal::Kanal(){
 }
 
 void Kanal::ProcessData(Carriage *car){
+    // Prüfen ob es ein Carriage für diese Klasse ist
+    if(car->getId() == (10 + this->id)){ // min Temp
+        this->SetValue(&minTemp[car->getIndex()],car->getData().toInt());
+    }
+    else if(car->getId() == (20 + this->id)){ // max Temp
+        this->SetValue(&maxTemp[car->getIndex()],car->getData().toInt());
+    }
+    else if(car->getIndex() == this->id){
+        switch(car->getId()){
+            case 61:
+                this->SetValue(&rpm,car->getData().toInt());
+                break;
+            case 62:
+                this->SetValue(&power,car->getData().toInt());
+                break;
+            case 71:
+                this->SetValue(&manualPower,car->getData().toInt());
+                break;
+            case 72:
+                this->SetValue(&startupTime,car->getData().toInt());
+                break;
+            case 73:
+                this->SetValue(&minPower,car->getData().toInt());
+                break;
+            case 74:
+                this->SetValue(&autoMode,car->getData().toInt());
+                break;
+            case 75:
+                this->SetValue(&stopEnabled,car->getData().toInt());
+                break;
+            case 76:
+                this->SetValue(&threshold,car->getData().toInt());
+                break;
+        }
+    }
+
+//    intValue minPower       = {0,0,100};
+//    intValue autoMode       = {0,0,1};
+//    intValue stopEnabled    = {0,0,1};
+//    intValue threshold      = {0,0,50};
 }
 
 int Kanal::getManualPower(){

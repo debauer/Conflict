@@ -2,19 +2,42 @@
 
 
 ConflictCore::ConflictCore(){
-    QObject::connect(&dfm, SIGNAL(Changed()),this,SLOT(ChangedData()));
-    QObject::connect(&kanal[0], SIGNAL(Changed()),this,SLOT(ChangedData()));
-    QObject::connect(&kanal[1], SIGNAL(Changed()),this,SLOT(ChangedData()));
-    QObject::connect(&kanal[2], SIGNAL(Changed()),this,SLOT(ChangedData()));
-    QObject::connect(&kanal[3], SIGNAL(Changed()),this,SLOT(ChangedData()));
-//    QObject::connect(&system, SIGNAL(Changed()),this,SLOT(ChangedData()));
 
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&dfm,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[0],SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[1],SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[2],SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3],SLOT(ProcessData(Carriage*)));
-//    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system,SLOT(ProcessData(Carriage*)));
+    kanal[0].setId(0);
+    kanal[1].setId(1);
+    kanal[2].setId(2);
+    kanal[3].setId(3);
+
+    QSignalMapper *signalMapper = new QSignalMapper(this);
+
+    signalMapper->setMapping(&dfm, QString("dfm"));
+    QObject::connect(&dfm, SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(&kanal[0], QString("kanal0"));
+    QObject::connect(&kanal[0], SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(&kanal[1], QString("kanal1"));
+    QObject::connect(&kanal[1], SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(&kanal[2], QString("kanal2"));
+    QObject::connect(&kanal[2], SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(&kanal[3], QString("kanal3"));
+    QObject::connect(&kanal[3], SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(&system, QString("system"));
+    QObject::connect(&system, SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(&led, QString("led"));
+    QObject::connect(&led, SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(&lcd, QString("led"));
+    QObject::connect(&lcd, SIGNAL(Changed()),signalMapper, SLOT (map()));
+
+    QObject::connect(signalMapper, SIGNAL(mapped(QString)),this, SLOT(ChangedData(QString)));
+
+
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&dfm      ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[0] ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[1] ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[2] ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3] ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system   ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&lcd   ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&led   ,SLOT(ProcessData(Carriage*)));
 }
 
 void ConflictCore::connectSerial(int port){
@@ -50,8 +73,9 @@ void ConflictCore::restart(){
     // Sende restart String
 }
 
-void ConflictCore::ChangedData(){
-    emit Changed();
+void ConflictCore::ChangedData(QString str){
+    this->printDebug(QString("Changed - ") + str);
+    emit Changed(this,str);
 }
 
 // Reicht daten des Interfaces an die Daten Klassen weiter. Filterung ist angedacht aber nicht implementiert.

@@ -8,6 +8,7 @@ class Kanal : public Data{
     Q_OBJECT
 
     private:
+
         intValue minTemp[24];   // im Konstruktor Initialiert
         intValue maxTemp[24];   // im Konstruktor Initialiert
         intValue rpm            = {0,0,9999};

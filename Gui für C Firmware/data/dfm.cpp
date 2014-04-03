@@ -1,7 +1,8 @@
 #include "dfm.h"
 
 
-Dfm::Dfm(){
+Dfm::Dfm()  : Data(){
+
 }
 
 void Dfm::ProcessData(Carriage *car){

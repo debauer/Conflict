@@ -17,6 +17,9 @@ public:
     void SetRamUsage(int d);
 
 private:
+    intValue hour    = {0,0,23};
+    intValue minute    = {0,0,59};
+    intValue secund    = {0,0,59};
     intValue cpuFreq    = {0,0,9999};
     intValue cpuUsage   = {0,0,100};
     intValue gpuUsage   = {0,0,100};

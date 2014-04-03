@@ -13,7 +13,9 @@
 class Data : public QObject{
     Q_OBJECT
 public:
+    int id;
     void SetValue (intValue (*ptr), int value);
+    void setId(int id);
     Data();
 signals:
     void Changed();

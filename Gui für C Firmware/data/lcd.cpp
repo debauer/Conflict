@@ -1,6 +1,6 @@
 #include "lcd.h"
 
-Lcd::Lcd(){
+Lcd::Lcd() : Data(){
     int i;
     for(i = 0;i<256;i++){
         content[i].max = 255;
@@ -15,6 +15,21 @@ Lcd::Lcd(){
 }
 
 void Lcd::ProcessData(Carriage *car){
+    switch(car->getId()){
+        case 77:
+            if(car->getIndex() == 1){
+                this->SetValue(&backlight,car->getData().toInt());
+            }else if(car->getIndex() == 2){
+                this->SetValue(&contrast,car->getData().toInt());
+            }
+            break;
+        case 80:
+            this->SetValue(&content[car->getIndex()],car->getData().toInt());
+            break;
+        case 80:
+            this->SetValue(&screens[car->getIndex()],car->getData().toInt());
+            break;
+    }
 }
 
 int Lcd::getBacklight(){

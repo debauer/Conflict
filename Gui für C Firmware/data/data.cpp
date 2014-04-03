@@ -1,10 +1,14 @@
 #include "data.h"
 
 Data::Data(){
-
+    this->id = 0;
 }
 
 void Data::ProcessData(Carriage *car){
+}
+
+void Data::setId(int id){
+    this->id = id;
 }
 
 void Data::SetValue (intValue *ptr, int value){

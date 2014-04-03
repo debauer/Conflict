@@ -28,13 +28,14 @@ public:
 private:
     Ui::MainWindow *ui;
     ConflictCore* newCore();
+    ConflictCore* aktivCore;
     //QWidget* loadUiFile();
 public slots:
     void newCoreSerial(int ser);
     void newCoreETH(QString ip);
     void debugConsole(Carriage *car);
     void debugConsole(QString str);
-    void updateGui();
+    void updateGui(ConflictCore* core,QString dataClass);
 };
 
 #endif // MAINWINDOW_H

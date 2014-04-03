@@ -19,7 +19,7 @@ struct serial{
 
 temperatur_s temperatur[24];
 luefter_s luefter[3];
-led_s led[3];
+led_s Led[3];
 ledModus_s ledModus;
 dfm_s dfm;
 anzeige_s anzeige;
@@ -178,9 +178,9 @@ void conflict_core::parseData(){
         anzeige.dfm = (uint8_t)data.value(255).toInt();
 
         ledModus.value = (uint8_t)data.value(256).toInt();
-        led[0].value = (uint8_t)data.value(257).toInt();
-        led[1].value = (uint8_t)data.value(258).toInt();
-        led[2].value = (uint8_t)data.value(259).toInt();
+        Led[0].value = (uint8_t)data.value(257).toInt();
+        Led[1].value = (uint8_t)data.value(258).toInt();
+        Led[2].value = (uint8_t)data.value(259).toInt();
         firmware.version = data.value(324)+(QString)"."+data.value(325)+(QString)"."+data.value(326);
         for(i=0;i<8;i++){
             oneWireSensor[i].adresse = data.value(260+(i*8))+(QString)" "+data.value(261+(i*8))+(QString)" "+data.value(262+(i*8))+(QString)" "+data.value(263+(i*8))+(QString)" "+data.value(264+(i*8))+(QString)" "+data.value(265+(i*8))+(QString)" "+data.value(266+(i*8))+(QString)" "+data.value(267+(i*8));
@@ -377,11 +377,11 @@ void conflict_core::sendLedData(){
     str.append("LED#6#");
     str.append(QString::number(ledModus.value));
     str.append("#");
-    str.append(QString::number(led[0].value));
+    str.append(QString::number(Led[0].value));
     str.append("#");
-    str.append(QString::number(led[1].value));
+    str.append(QString::number(Led[1].value));
     str.append("#");
-    str.append(QString::number(led[2].value));
+    str.append(QString::number(Led[2].value));
     str.append("#\r\n");
     sendString(str);
 }
@@ -414,7 +414,7 @@ void conflict_core::setLuefter(luefter_s data, uint8_t nr){
 }
 
 void conflict_core::setLed(led_s data, uint8_t nr){
-    led[nr] = data;
+    Led[nr] = data;
 }
 
 void conflict_core::setLedModus(ledModus_s modus){
@@ -482,7 +482,7 @@ luefter_s conflict_core::getLuefter(uint8_t nr){
 }
 
 led_s conflict_core::getLed(uint8_t nr){
-    return led[nr];
+    return Led[nr];
 }
 
 ledModus_s conflict_core::getLedModus(){

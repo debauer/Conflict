@@ -32,6 +32,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     QObject::connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(newCoreSerial(int)));
 
+    //QObject::connect (ui->sliderBlue, SIGNAL(sliderMoved(int)), this, SLOT(updateConflictColor(int)));
+    //QObject::connect (ui->sliderRed, SIGNAL(sliderMoved(int)), this, SLOT(updateConflictColor(int)));
+    //QObject::connect (ui->sliderGreen, SIGNAL(sliderMoved(int)), this, SLOT(updateConflictColor(int)));
+
     /* ETH Menü */
 
     /* sonstiges Connects */
@@ -44,7 +48,7 @@ MainWindow::~MainWindow(){
 ConflictCore* MainWindow::newCore(){
      ConflictCore *core = new ConflictCore();
      QObject::connect (core, SIGNAL(debugOutput(QString)), this, SLOT(debugConsole(QString)));
-     QObject::connect (core, SIGNAL(Changed()), this, SLOT(updateGui()));
+     QObject::connect (core, SIGNAL(Changed(ConflictCore*,QString)), this, SLOT(updateGui(ConflictCore*,QString)));
      return core;
 }\
 
@@ -62,8 +66,10 @@ void MainWindow::newCoreETH(QString ip){
 }
 
 /* Haupt Update Worker */
-void MainWindow::updateGui(){
-     ui->console->append(QString("updateGui"));
+void MainWindow::updateGui(ConflictCore* core,QString dataClass){
+     if(dataClass == QString('led')){
+        ui->console->append(QString("updateGui LED"));
+     }
 }
 
 void MainWindow::debugConsole(Carriage *car){

@@ -1,6 +1,6 @@
 #include "rechner.h"
 
-Rechner::Rechner(){
+Rechner::Rechner() : Data(){
 
 }
 

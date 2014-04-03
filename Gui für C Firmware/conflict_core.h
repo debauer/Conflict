@@ -16,6 +16,8 @@
 #include "data/kanal.h"
 #include "data/dfm.h"
 #include "data/rechner.h"
+#include "data/led.h"
+#include "data/lcd.h"
 
 /*
  *
@@ -36,7 +38,8 @@ class ConflictCore : public QObject{
     public:
         ConflictCore();
         Rechner system;
-//        System system;
+        Led led;
+        Lcd lcd;
         Dfm dfm;
         Kanal kanal[4];
 
@@ -47,9 +50,9 @@ class ConflictCore : public QObject{
         void rcvCarriage(Carriage *car); //
     public slots:
         void restart(); //
-        void ChangedData(); // Akkregator der Changed Signale von Daten Klassen. Emittet ebenfalls Changed()
+        void ChangedData(QString str); // Akkregator der Changed Signale von Daten Klassen. Emittet ebenfalls Changed()
     signals:
-        void Changed();
+        void Changed(ConflictCore* core, QString str);
         void newCarriage(Carriage *car);
         void debugOutput(QString  str);
 };
