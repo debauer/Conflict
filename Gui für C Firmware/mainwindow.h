@@ -30,6 +30,11 @@ private:
     ConflictCore* newCore();
     ConflictCore* aktivCore;
     //QWidget* loadUiFile();
+
+    QSignalMapper* signalMapper;
+    QSignalMapper* sliderSignalMapper;
+
+
 public slots:
     void newCoreSerial(int ser);
     void newCoreETH(QString ip);

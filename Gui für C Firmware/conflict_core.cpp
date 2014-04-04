@@ -10,6 +10,8 @@ ConflictCore::ConflictCore(){
 
     QSignalMapper *signalMapper = new QSignalMapper(this);
 
+    led = new Led();
+
     signalMapper->setMapping(&dfm, QString("dfm"));
     QObject::connect(&dfm, SIGNAL(Changed()),signalMapper, SLOT (map()));
     signalMapper->setMapping(&kanal[0], QString("kanal0"));
@@ -22,8 +24,8 @@ ConflictCore::ConflictCore(){
     QObject::connect(&kanal[3], SIGNAL(Changed()),signalMapper, SLOT (map()));
     signalMapper->setMapping(&system, QString("system"));
     QObject::connect(&system, SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(&led, QString("led"));
-    QObject::connect(&led, SIGNAL(Changed()),signalMapper, SLOT (map()));
+    signalMapper->setMapping(led, QString("led"));
+    QObject::connect(led, SIGNAL(Changed()),signalMapper, SLOT (map()));
     signalMapper->setMapping(&lcd, QString("led"));
     QObject::connect(&lcd, SIGNAL(Changed()),signalMapper, SLOT (map()));
 
@@ -37,7 +39,9 @@ ConflictCore::ConflictCore(){
     QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3] ,SLOT(ProcessData(Carriage*)));
     QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system   ,SLOT(ProcessData(Carriage*)));
     QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&lcd   ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&led   ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),led   ,SLOT(ProcessData(Carriage*)));
+
+    QObject::connect(led, SIGNAL(PushToHw(Carriage*)),this,SLOT(sendCarriage(Carriage*)));
 }
 
 void ConflictCore::connectSerial(int port){
@@ -84,4 +88,9 @@ void ConflictCore::ChangedData(QString str){
 void ConflictCore::rcvCarriage(Carriage *car){
     //this->printDebug(QString("Carriage - ") + car->toString());
     emit this->newCarriage(car);
+}
+
+void ConflictCore::sendCarriage(Carriage *car){
+    this->printDebug(QString("Sende Carriage:") + car->toString());
+    interface->SendString(car->toString());
 }

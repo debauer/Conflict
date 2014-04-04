@@ -46,7 +46,8 @@ HEADERS  += fetchThread.h \
     data/rechner.h
 
 
-FORMS    += mainwindow.ui \
-    conflictwidget.ui
+FORMS    += \
+    conflictwidget.ui \
+    mainwindow.ui
 
 OTHER_FILES +=

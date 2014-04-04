@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     /* Serial Menü*/
     serialPorts = QextSerialEnumerator::getPorts();
-    QSignalMapper* signalMapper = new QSignalMapper (this);
+    signalMapper = new QSignalMapper (this);
     for(i = 0;i < serialPorts.size();i++){
         if((QString)serialPorts.at(i).portName != (QString)""){
             QAction *menueSerialPorts = new QAction((QString)serialPorts.at(i).portName.toLocal8Bit().constData() + QString(),this);
@@ -31,10 +31,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         }
     }
     QObject::connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(newCoreSerial(int)));
-
-    //QObject::connect (ui->sliderBlue, SIGNAL(sliderMoved(int)), this, SLOT(updateConflictColor(int)));
-    //QObject::connect (ui->sliderRed, SIGNAL(sliderMoved(int)), this, SLOT(updateConflictColor(int)));
-    //QObject::connect (ui->sliderGreen, SIGNAL(sliderMoved(int)), this, SLOT(updateConflictColor(int)));
 
     /* ETH Menü */
 
@@ -49,6 +45,10 @@ ConflictCore* MainWindow::newCore(){
      ConflictCore *core = new ConflictCore();
      QObject::connect (core, SIGNAL(debugOutput(QString)), this, SLOT(debugConsole(QString)));
      QObject::connect (core, SIGNAL(Changed(ConflictCore*,QString)), this, SLOT(updateGui(ConflictCore*,QString)));
+     QObject::connect(ui->ledColorGreen, SIGNAL(valueChanged(int)),core->led, SLOT (setGreen(int)));
+     QObject::connect(ui->ledColorRed, SIGNAL(valueChanged(int)),core->led, SLOT (setRed(int)));
+     QObject::connect(ui->ledColorBlue, SIGNAL(valueChanged(int)),core->led, SLOT (setBlue(int)));
+     QObject::connect(ui->ledModus, SIGNAL(currentIndexChanged(int)),core->led, SLOT (setMode(int)));
      return core;
 }\
 
@@ -57,7 +57,7 @@ void MainWindow::newCoreSerial(int serId){
      core->connectSerial(serId);
      ConflictWidget *conflictWidget = new ConflictWidget();
      Ui::ConflictWidget *conflictUi = conflictWidget->getObject();
-     ui->Tabs->addTab(conflictWidget,QString(""));
+     //ui->Tabs->addTab(conflictWidget,QString(""));
 }
 
 void MainWindow::newCoreETH(QString ip){

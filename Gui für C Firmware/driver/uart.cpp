@@ -72,6 +72,7 @@ bool Uart::IsOpen(){
 
 void Uart::SendString(QString str){
     if(this->IsOpen()){
-        serial.port->write(str.toLatin1(),str.length());
+        core->printDebug(QString("String") + str.toLatin1() + QString(" Länge ") + QString::number(str.length()));
+        serial.port->write(str.toLatin1());
     }
 }

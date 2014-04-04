@@ -2,6 +2,7 @@
 
 Kanal::Kanal() : Data(){
     int i;
+    // intValue Arrays Initialisierung
     for(i = 0;i<24;i++){
         maxTemp[i].max = 255;
         maxTemp[i].min = 0;
@@ -14,11 +15,11 @@ Kanal::Kanal() : Data(){
 }
 
 void Kanal::ProcessData(Carriage *car){
-    // Prüfen ob es ein Carriage für diese Klasse ist
-    if(car->getId() == (10 + this->id)){ // min Temp
+
+    if(car->getId() == (10 + this->id)){        // min Temp
         this->SetValue(&minTemp[car->getIndex()],car->getData().toInt());
     }
-    else if(car->getId() == (20 + this->id)){ // max Temp
+    else if(car->getId() == (20 + this->id)){   // max Temp
         this->SetValue(&maxTemp[car->getIndex()],car->getData().toInt());
     }
     else if(car->getIndex() == this->id){
@@ -49,13 +50,12 @@ void Kanal::ProcessData(Carriage *car){
                 break;
         }
     }
-
-//    intValue minPower       = {0,0,100};
-//    intValue autoMode       = {0,0,1};
-//    intValue stopEnabled    = {0,0,1};
-//    intValue threshold      = {0,0,50};
 }
 
+/* ================================================================= *
+ *                          SETTER / GETTER
+ *
+ * ================================================================= */
 int Kanal::getManualPower(){
     return manualPower.value;
 }

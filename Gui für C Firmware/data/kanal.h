@@ -4,6 +4,13 @@
 #include <QObject>
 #include "data.h"
 
+/*
+ *
+ *  child of Data
+ *  Objekt für einen DFM (Durchflussmesser)
+ *
+ */
+
 class Kanal : public Data{
     Q_OBJECT
 
@@ -42,9 +49,10 @@ class Kanal : public Data{
         void setMaxTemp (int tId , int value);
         int getMinTemp  (int tId) ;
         void setMinTemp (int tId , int value);
-
+signals:
+    // Changed() von parant!
 public slots:
-        void ProcessData(Carriage *car);
+        void ProcessData(Carriage *car); // Parant Member überladen
 };
 
 #endif // KANAL_H

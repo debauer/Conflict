@@ -1,7 +1,8 @@
 #include "data.h"
 
 Data::Data(){
-    this->id = 0;
+    this->id = this->maxId + 1;
+    this->maxId = this->id;
 }
 
 void Data::ProcessData(Carriage *car){

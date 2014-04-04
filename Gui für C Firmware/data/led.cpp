@@ -6,16 +6,18 @@ Led::Led() : Data(){
 void Led::ProcessData(Carriage *car){
     switch(car->getId()){
         case 78:
-            this->SetValue(&mode[car->getIndex()],car->getData().toInt());
+            this->SetValue(&mode,car->getData().toInt());
             break;
         case 79:
             if(car->getIndex() == 1){
-                this->SetValue(&red[car->getIndex()],car->getData().toInt());
+                this->SetValue(&red,car->getData().toInt());
             }else if(car->getIndex() == 2){
-                this->SetValue(&green[car->getIndex()],car->getData().toInt());
+                this->SetValue(&green,car->getData().toInt());
             }else if(car->getIndex() == 3){
-                this->SetValue(&blue[car->getIndex()],car->getData().toInt());
+                this->SetValue(&blue,car->getData().toInt());
             }
+            break;
+        default:
             break;
     }
 }
@@ -26,6 +28,7 @@ int Led::getRed(){
 
 void Led::setRed(int value){
     this->SetValue(&red, value);
+    emit PushToHw(new Carriage(0,79, 1, red.value));
 }
 
 int Led::getBlue(){
@@ -34,6 +37,8 @@ int Led::getBlue(){
 
 void Led::setBlue(int value){
     this->SetValue(&blue, value);
+
+    emit PushToHw(new Carriage(0,79, 3, blue.value));
 }
 
 int Led::getGreen(){
@@ -42,6 +47,7 @@ int Led::getGreen(){
 
 void Led::setGreen(int value){
     this->SetValue(&green, value);
+    emit PushToHw(new Carriage(0,79, 2, green.value));
 }
 
 int Led::getMode(){
@@ -50,5 +56,6 @@ int Led::getMode(){
 
 void Led::setMode(int value){
     this->SetValue(&mode, value);
+    emit PushToHw(new Carriage(0,78, 1, mode.value));
 }
 

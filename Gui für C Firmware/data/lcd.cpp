@@ -26,7 +26,7 @@ void Lcd::ProcessData(Carriage *car){
         case 80:
             this->SetValue(&content[car->getIndex()],car->getData().toInt());
             break;
-        case 80:
+        case 81:
             this->SetValue(&screens[car->getIndex()],car->getData().toInt());
             break;
     }

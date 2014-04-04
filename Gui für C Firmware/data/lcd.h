@@ -29,9 +29,10 @@ public:
 
     int  getContent(int id);
     void setContent(int id, int value);
-
+signals:
+    // Changed() von parant!
 public slots:
-    void ProcessData(Carriage *car);
+    void ProcessData(Carriage *car); // Parant Member überladen
 };
 
 #endif // LCD_H

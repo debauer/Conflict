@@ -22,4 +22,26 @@ void Rechner::SetRamUsage(int d){
 }
 
 void Rechner::ProcessData(Carriage *car){
+    switch(car->getId()){
+        case 40:
+            if(car->getIndex() == 1){
+                this->SetValue(&hour,car->getData().toInt());
+            }else if(car->getIndex() == 2){
+                this->SetValue(&minute,car->getData().toInt());
+            }else if(car->getIndex() == 3){
+                this->SetValue(&secund,car->getData().toInt());
+            }
+            break;
+        case 41:
+            if(car->getIndex() == 1){
+                this->SetValue(&cpuFreq,car->getData().toInt());
+            }else if(car->getIndex() == 2){
+                this->SetValue(&cpuUsage,car->getData().toInt());
+            }else if(car->getIndex() == 3){
+                this->SetValue(&gpuUsage,car->getData().toInt());
+            }else if(car->getIndex() == 4){
+                this->SetValue(&ramUsage,car->getData().toInt());
+            }
+            break;
+    }
 }

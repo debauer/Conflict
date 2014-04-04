@@ -21,10 +21,19 @@
 
 /*
  *
- * Namenkonvention: (unfertig)
- * updateXYZ() - daten an HW schicken
- * setXYZ() - setze Object Daten, bei Datenänderung Signal: Changed();
- * rcvXYZ() - daten von Interface empfangen
+ * Notiz 4.4.14: Datenklassen find ich grade total bescheuert... eine generische Klasse hätte es vllt auch getan.
+ * Wäre etwas komplexer, aber besser zu warten. Jetzt muss ich da durch!
+ *
+ * -----------------------
+ *
+ * updateXYZ()
+ *  daten an HW schicken
+ *
+ * setXYZ()
+ *  setze Object Daten von HW oder GUI, emitted: Changed();
+ *  Idee ist das man an einer stelle den Wert ändert und er automatisch überall deployed wird.
+ *  Ändert sich in einem Datenobjekt ein Value
+ *  Bei falschem Casten kann das böse loops provozieren.
  *
  */
 
@@ -38,7 +47,7 @@ class ConflictCore : public QObject{
     public:
         ConflictCore();
         Rechner system;
-        Led led;
+        Led *led;
         Lcd lcd;
         Dfm dfm;
         Kanal kanal[4];
@@ -51,6 +60,7 @@ class ConflictCore : public QObject{
     public slots:
         void restart(); //
         void ChangedData(QString str); // Akkregator der Changed Signale von Daten Klassen. Emittet ebenfalls Changed()
+        void sendCarriage(Carriage *car); //
     signals:
         void Changed(ConflictCore* core, QString str);
         void newCarriage(Carriage *car);

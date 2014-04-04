@@ -6,19 +6,24 @@
 
 /*
  *
+ *  child of Data
+ *  Objekt für einen DFM (Durchflussmesser)
+ *
  */
 
 class Dfm : public Data{
     Q_OBJECT
 
     private:
-        intValue waterFlow;
-        intValue pulsePerLiter;
-        intValue minFlow;
+        intValue waterFlow;     // Aktueller Durchfluss
+        intValue pulsePerLiter; // Impulswertigkeit
+        intValue minFlow;       // Alarmgrenze
     public:
         Dfm();
+    signals:
+        // Changed() von parant!
     public slots:
-        void ProcessData(Carriage *car);
+        void ProcessData(Carriage *car); // Parant Member überladen
 
 };
 

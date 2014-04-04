@@ -6,8 +6,8 @@
 class Led : public Data{
     Q_OBJECT
 
-    intValue red      = {0,0,100};
-    intValue blue      = {0,0,100};
+    intValue red        = {0,0,100};
+    intValue blue       = {0,0,100};
     intValue green      = {0,0,100};
     intValue mode       = {0,0,255};
 
@@ -15,19 +15,23 @@ public:
     Led();
 
     int getRed();
-    void setRed(int value);
+
 
     int getBlue();
-    void setBlue(int value);
+
 
     int getGreen();
-    void setGreen(int value);
 
     int getMode();
-    void setMode(int value);
 
+signals:
+    // Changed() von parant!
 public slots:
-    void ProcessData(Carriage *car);
+    void setMode(int value);
+    void setGreen(int value);
+    void setBlue(int value);
+    void setRed(int value);
+    void ProcessData(Carriage *car); // Parant Member überladen
 
 };
 
