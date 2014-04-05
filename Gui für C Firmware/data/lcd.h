@@ -1,6 +1,7 @@
 #ifndef LCD_H
 #define LCD_H
 
+#include <QObject>
 #include "data.h"
 
 class Lcd : public Data{
@@ -19,19 +20,16 @@ public:
     void updateContent();
 
     int  getBacklight();
-    void setBacklight(int value);
-
     int  getContrast();
-    void setContrast(int value);
-
     int  getScreens(int id);
-    void setScreens(int id, int value);
-
     int  getContent(int id);
-    void setContent(int id, int value);
 signals:
     // Changed() von parant!
 public slots:
+    void setBacklight(int value);
+    void setContrast(int value);
+    void setScreens(int id, int value);
+    void setContent(int id, int value);
     void ProcessData(Carriage *car); // Parant Member überladen
 };
 

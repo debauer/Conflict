@@ -30,7 +30,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             signalMapper -> setMapping (menueSerialPorts, i);
         }
     }
+
     QObject::connect (signalMapper, SIGNAL(mapped(int)), this, SLOT(newCoreSerial(int)));
+
 
     /* ETH Menü */
 
@@ -41,14 +43,26 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
+void MainWindow::connectCore(ConflictCore* core){
+    QObject::connect (core, SIGNAL(debugOutput(QString)), this, SLOT(debugConsole(QString)));
+    QObject::connect (core, SIGNAL(Changed(ConflictCore*,QString)), this, SLOT(updateGui(ConflictCore*,QString)));
+    QObject::connect(ui->ledColorGreen, SIGNAL(sliderMoved(int)),&core->led, SLOT(setGreen(int)));
+    QObject::connect(ui->ledColorRed, SIGNAL(valueChanged(int)),&core->led, SLOT(setRed(int)));
+    QObject::connect(ui->ledColorBlue, SIGNAL(valueChanged(int)),&core->led, SLOT(setBlue(int)));
+    QObject::connect(ui->ledModus, SIGNAL(currentIndexChanged(int)),&core->led, SLOT(setMode(int)));
+    ui->debug->append(QString::number(ui->ledColorBlue->value()));
+}
+
+void MainWindow::disconnectCore(ConflictCore* core){
+
+    QObject::disconnect(core,0,this,0); // alle signals des Cores an mainwindow disconnecten
+
+    QObject::disconnect(&core->led,0);
+}
+
 ConflictCore* MainWindow::newCore(){
      ConflictCore *core = new ConflictCore();
-     QObject::connect (core, SIGNAL(debugOutput(QString)), this, SLOT(debugConsole(QString)));
-     QObject::connect (core, SIGNAL(Changed(ConflictCore*,QString)), this, SLOT(updateGui(ConflictCore*,QString)));
-     QObject::connect(ui->ledColorGreen, SIGNAL(valueChanged(int)),core->led, SLOT (setGreen(int)));
-     QObject::connect(ui->ledColorRed, SIGNAL(valueChanged(int)),core->led, SLOT (setRed(int)));
-     QObject::connect(ui->ledColorBlue, SIGNAL(valueChanged(int)),core->led, SLOT (setBlue(int)));
-     QObject::connect(ui->ledModus, SIGNAL(currentIndexChanged(int)),core->led, SLOT (setMode(int)));
+     this->connectCore(core);
      return core;
 }\
 
@@ -67,9 +81,19 @@ void MainWindow::newCoreETH(QString ip){
 
 /* Haupt Update Worker */
 void MainWindow::updateGui(ConflictCore* core,QString dataClass){
-     if(dataClass == QString('led')){
+     if(dataClass == QString("led")){
         ui->console->append(QString("updateGui LED"));
+     }else if (dataClass == QString("kanal1")){
+        ui->infoKanal1RPM->setText(QString::number(core->kanal[0].getRpm()));
+     }else if (dataClass == QString("kanal2")){
+        ui->infoKanal2RPM->setText(QString::number(core->kanal[1].getRpm()));
+     }else if (dataClass == QString("kanal3")){
+        ui->infoKanal3RPM->setText(QString::number(core->kanal[2].getRpm()));
      }
+}
+
+void MainWindow::debugConsole(int iihh){
+    ui->debug->append(QString::number(iihh));
 }
 
 void MainWindow::debugConsole(Carriage *car){

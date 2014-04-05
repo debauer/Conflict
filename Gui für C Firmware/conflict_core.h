@@ -47,10 +47,14 @@ class ConflictCore : public QObject{
     public:
         ConflictCore();
         Rechner system;
-        Led *led;
+        Led led;
         Lcd lcd;
         Dfm dfm;
         Kanal kanal[4];
+
+        QSignalMapper *signalMapper;
+
+        void makeMapping(QObject* obj, QString str);
 
         void connectSerial(int port);
         void connectETH(QString ip);

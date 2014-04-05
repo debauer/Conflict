@@ -46,7 +46,9 @@ int Led::getGreen(){
 }
 
 void Led::setGreen(int value){
+    qDebug() << value;
     this->SetValue(&green, value);
+    qDebug() << green.value;
     emit PushToHw(new Carriage(0,79, 2, green.value));
 }
 

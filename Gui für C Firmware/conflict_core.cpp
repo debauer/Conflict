@@ -1,33 +1,29 @@
 #include "conflict_core.h"
 
+void ConflictCore::makeMapping(QObject* obj, QString str){
+    signalMapper->setMapping(obj,str);
+    QObject::connect(obj, SIGNAL(Changed()),signalMapper, SLOT (map()));
+}
+
 
 ConflictCore::ConflictCore(){
 
-    kanal[0].setId(0);
-    kanal[1].setId(1);
-    kanal[2].setId(2);
-    kanal[3].setId(3);
+    kanal[0].setId(1);
+    kanal[1].setId(2);
+    kanal[2].setId(3);
+    kanal[3].setId(4);
 
-    QSignalMapper *signalMapper = new QSignalMapper(this);
+    signalMapper = new QSignalMapper(this);
 
-    led = new Led();
 
-    signalMapper->setMapping(&dfm, QString("dfm"));
-    QObject::connect(&dfm, SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(&kanal[0], QString("kanal0"));
-    QObject::connect(&kanal[0], SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(&kanal[1], QString("kanal1"));
-    QObject::connect(&kanal[1], SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(&kanal[2], QString("kanal2"));
-    QObject::connect(&kanal[2], SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(&kanal[3], QString("kanal3"));
-    QObject::connect(&kanal[3], SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(&system, QString("system"));
-    QObject::connect(&system, SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(led, QString("led"));
-    QObject::connect(led, SIGNAL(Changed()),signalMapper, SLOT (map()));
-    signalMapper->setMapping(&lcd, QString("led"));
-    QObject::connect(&lcd, SIGNAL(Changed()),signalMapper, SLOT (map()));
+    makeMapping(&dfm,QString("dfm"));
+    makeMapping(&kanal[0], QString("kanal1"));
+    makeMapping(&kanal[1], QString("kanal2"));
+    makeMapping(&kanal[2], QString("kanal3"));
+    makeMapping(&kanal[3], QString("kanal4"));
+    makeMapping(&system, QString("system"));
+    makeMapping(&led, QString("led"));
+    makeMapping(&lcd, QString("lcd"));
 
     QObject::connect(signalMapper, SIGNAL(mapped(QString)),this, SLOT(ChangedData(QString)));
 
@@ -38,10 +34,10 @@ ConflictCore::ConflictCore(){
     QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[2] ,SLOT(ProcessData(Carriage*)));
     QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3] ,SLOT(ProcessData(Carriage*)));
     QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system   ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&lcd   ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),led   ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&lcd      ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&led       ,SLOT(ProcessData(Carriage*)));
 
-    QObject::connect(led, SIGNAL(PushToHw(Carriage*)),this,SLOT(sendCarriage(Carriage*)));
+    QObject::connect(&led, SIGNAL(PushToHw(Carriage*)),this,SLOT(sendCarriage(Carriage*)));
 }
 
 void ConflictCore::connectSerial(int port){

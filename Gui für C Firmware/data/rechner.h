@@ -21,14 +21,14 @@ public:
 
     void UpdateClock();         // Uhrzeit
     void UpdateSysData();       // CPU Freq, CPU/RAM/GPU usage
-    void SetCpuFreq(int d);
-    void SetCpuUsage(int d);
-    void SetGpuUsage(int d);
-    void SetRamUsage(int d);
 
 signals:
     // Changed() von parant!
 public slots:
+    void SetCpuFreq(int d);
+    void SetCpuUsage(int d);
+    void SetGpuUsage(int d);
+    void SetRamUsage(int d);
     void ProcessData(Carriage *car); // Parant Member überladen
 
 };

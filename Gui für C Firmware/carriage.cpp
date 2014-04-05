@@ -28,7 +28,8 @@ QString Carriage::getString(){
             .append(QString::number(this->index))
             .append("#")
             .append(this->data)
-            .append("#");
+            .append("#")
+            .append(QString(0x0D));
 }
 
 QString Carriage::toString(){

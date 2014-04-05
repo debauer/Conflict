@@ -24,7 +24,6 @@ class Data : public QObject{
 
 protected:
     int id;     // Laufende nummer für Instanzen. Benötigt um signals auf ProcessData einer Instanz zuzuweisen.
-    int maxId;  // höchste vergebene id. neue Instanz Id = maxId + 1;
 public:
     void SetValue (intValue (*ptr), int value); // möglichst nicht überschreiben!
     void setId(int id);

@@ -1,8 +1,9 @@
 #include "data.h"
 
 Data::Data(){
-    this->id = this->maxId + 1;
-    this->maxId = this->id;
+    static int maxId = 0;
+    this->id = maxId + 1;
+    maxId = this->id;
 }
 
 void Data::ProcessData(Carriage *car){
@@ -30,6 +31,7 @@ void Data::SetValue (intValue *ptr, int value){
     }
 
     if(newValue != ptr->value){
+        ptr->value = newValue;
         emit this->Changed();
     }
 }

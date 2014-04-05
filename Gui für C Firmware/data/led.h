@@ -15,13 +15,8 @@ public:
     Led();
 
     int getRed();
-
-
     int getBlue();
-
-
     int getGreen();
-
     int getMode();
 
 signals:
