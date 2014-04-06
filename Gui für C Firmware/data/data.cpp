@@ -9,6 +9,9 @@ Data::Data(){
 void Data::ProcessData(Carriage *car){
 }
 
+void Data::RequestData(){
+}
+
 void Data::setId(int id){
     this->id = id;
 }

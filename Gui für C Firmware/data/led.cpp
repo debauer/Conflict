@@ -1,25 +1,49 @@
 #include "led.h"
 
+void Led::addMap(intValue* v){
+    map[v->car.toString()] = v;
+}
+
 Led::Led() : Data(){
+    addMap(&blue);
+    addMap(&red);
+    addMap(&green);
+    addMap(&mode);
+    //list.append(QList<intvalue>({&red, &green,&blue,&mode}));
 }
 
 void Led::ProcessData(Carriage *car){
-    switch(car->getId()){
-        case 78:
-            this->SetValue(&mode,car->getData().toInt());
-            break;
-        case 79:
-            if(car->getIndex() == 1){
-                this->SetValue(&red,car->getData().toInt());
-            }else if(car->getIndex() == 2){
-                this->SetValue(&green,car->getData().toInt());
-            }else if(car->getIndex() == 3){
-                this->SetValue(&blue,car->getData().toInt());
-            }
-            break;
-        default:
-            break;
+    if(map.contains(car->toString())){
+        intValue *iv = map[car->toString()];
+        iv->car.set(car->toString());
+        map[car->toString()] = iv;
+        qDebug() << "map funzt";
     }
+
+//    switch(car->getId()){
+//        case 78:
+//            this->SetValue(&mode,car->getData().toInt());
+//            break;
+//        case 79:
+//            if(car->getIndex() == 1){
+//                this->SetValue(&red,car->getData().toInt());
+//            }else if(car->getIndex() == 2){
+//                this->SetValue(&green,car->getData().toInt());
+//            }else if(car->getIndex() == 3){
+//                this->SetValue(&blue,car->getData().toInt());
+//            }
+//            break;
+//        default:
+//            break;
+//    }
+}
+
+void Led::RequestData(){
+    qDebug() << "Syncen bitte";
+    emit PushToHw(&red.car);
+    emit PushToHw(&blue.car);
+    emit PushToHw(&green.car);
+    emit PushToHw(&mode.car);
 }
 
 int Led::getRed(){
@@ -46,9 +70,7 @@ int Led::getGreen(){
 }
 
 void Led::setGreen(int value){
-    qDebug() << value;
     this->SetValue(&green, value);
-    qDebug() << green.value;
     emit PushToHw(new Carriage(0,79, 2, green.value));
 }
 

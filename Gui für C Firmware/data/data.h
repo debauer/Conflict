@@ -32,6 +32,7 @@ signals:
     void Changed();                 // Signal für GUI das sich das Modell geändert hat und die View geupdatet werden soll
     void PushToHw(Carriage *car);   // Schieb den Carriage zur HW.
 public slots:
+    void RequestData();
     void ProcessData(Carriage *car);            // Überschreiben!
 };
 

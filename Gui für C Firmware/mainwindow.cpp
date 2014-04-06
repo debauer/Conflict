@@ -50,7 +50,10 @@ void MainWindow::connectCore(ConflictCore* core){
     QObject::connect(ui->ledColorRed, SIGNAL(valueChanged(int)),&core->led, SLOT(setRed(int)));
     QObject::connect(ui->ledColorBlue, SIGNAL(valueChanged(int)),&core->led, SLOT(setBlue(int)));
     QObject::connect(ui->ledModus, SIGNAL(currentIndexChanged(int)),&core->led, SLOT(setMode(int)));
-    ui->debug->append(QString::number(ui->ledColorBlue->value()));
+    QObject::connect(&core->led,&Led::Changed,[=]() { ui->ledColorRed->setValue(core->led.getRed());
+                                                      ui->ledColorGreen->setValue(core->led.getGreen());
+                                                      ui->ledColorBlue->setValue(core->led.getBlue());
+                                                    });
 }
 
 void MainWindow::disconnectCore(ConflictCore* core){
@@ -88,9 +91,15 @@ void MainWindow::updateGui(ConflictCore* core,QString dataClass){
      }else if (dataClass == QString("kanal2")){
         ui->infoKanal2RPM->setText(QString::number(core->kanal[1].getRpm()));
      }else if (dataClass == QString("kanal3")){
+
         ui->infoKanal3RPM->setText(QString::number(core->kanal[2].getRpm()));
      }
 }
+
+void  MainWindow::speicherKanal(){
+
+}
+
 
 void MainWindow::debugConsole(int iihh){
     ui->debug->append(QString::number(iihh));

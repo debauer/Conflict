@@ -52,6 +52,10 @@ void Kanal::ProcessData(Carriage *car){
     }
 }
 
+void Kanal::RequestData(){
+   emit PushToHw(new Carriage(1, 78, 1, 0));
+}
+
 /* ================================================================= *
  *                          SETTER / GETTER
  *

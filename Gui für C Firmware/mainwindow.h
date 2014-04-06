@@ -44,6 +44,8 @@ public slots:
     void debugConsole(QString str);
     void debugConsole(int iihh);
     void updateGui(ConflictCore* core,QString dataClass);
+    void speicherKanal();
+//    void speicherTemperatur();
 };
 
 #endif // MAINWINDOW_H

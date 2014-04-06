@@ -44,6 +44,10 @@ class ConflictCore : public QObject{
         AbsInterface *interface;
         bool interfaceOpen;
         void connectInterface(QString str);
+
+        QSignalMapper *signalMapper;
+        void makeMapping(Data* obj, QString str);
+
     public:
         ConflictCore();
         Rechner system;
@@ -52,9 +56,6 @@ class ConflictCore : public QObject{
         Dfm dfm;
         Kanal kanal[4];
 
-        QSignalMapper *signalMapper;
-
-        void makeMapping(QObject* obj, QString str);
 
         void connectSerial(int port);
         void connectETH(QString ip);
@@ -69,6 +70,7 @@ class ConflictCore : public QObject{
         void Changed(ConflictCore* core, QString str);
         void newCarriage(Carriage *car);
         void debugOutput(QString  str);
+        void syncData();
 };
 
 #endif // CONFLICT_CORE_H

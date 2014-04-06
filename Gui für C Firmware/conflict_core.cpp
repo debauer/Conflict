@@ -1,8 +1,11 @@
 #include "conflict_core.h"
 
-void ConflictCore::makeMapping(QObject* obj, QString str){
+void ConflictCore::makeMapping(Data* obj, QString str){
     signalMapper->setMapping(obj,str);
     QObject::connect(obj, SIGNAL(Changed()),signalMapper, SLOT (map()));
+    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),obj ,SLOT(ProcessData(Carriage*)));
+    QObject::connect(obj, SIGNAL(PushToHw(Carriage*)),this,SLOT(sendCarriage(Carriage*)));
+    //QObject::connect(this, SIGNAL(syncData()),obj,SLOT(RequestData()));
 }
 
 
@@ -15,7 +18,6 @@ ConflictCore::ConflictCore(){
 
     signalMapper = new QSignalMapper(this);
 
-
     makeMapping(&dfm,QString("dfm"));
     makeMapping(&kanal[0], QString("kanal1"));
     makeMapping(&kanal[1], QString("kanal2"));
@@ -27,17 +29,7 @@ ConflictCore::ConflictCore(){
 
     QObject::connect(signalMapper, SIGNAL(mapped(QString)),this, SLOT(ChangedData(QString)));
 
-
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&dfm      ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[0] ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[1] ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[2] ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&kanal[3] ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&system   ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&lcd      ,SLOT(ProcessData(Carriage*)));
-    QObject::connect(this, SIGNAL(newCarriage(Carriage*)),&led       ,SLOT(ProcessData(Carriage*)));
-
-    QObject::connect(&led, SIGNAL(PushToHw(Carriage*)),this,SLOT(sendCarriage(Carriage*)));
+    QObject::connect(this, SIGNAL(syncData()),&led,SLOT(RequestData());
 }
 
 void ConflictCore::connectSerial(int port){
@@ -57,6 +49,8 @@ void ConflictCore::connectInterface(QString str){
     if(this->interface->IsOpen()){
         this->interfaceOpen = true;
         this->printDebug(QString("Interface Open"));
+        emit this->syncData();
+        this->printDebug(QString("Sync Data"));
     }
 }
 
@@ -70,7 +64,8 @@ void ConflictCore::disconnect(){
 
 void ConflictCore::restart(){
     this->printDebug(QString("restart"));
-    // Sende restart String
+    emit this->syncData();
+    interface->SendString((new Carriage(0,1,170,85))->toString());
 }
 
 void ConflictCore::ChangedData(QString str){

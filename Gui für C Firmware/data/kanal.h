@@ -18,17 +18,17 @@ class Kanal : public Data{
 
         intValue minTemp[24];   // im Konstruktor Initialiert
         intValue maxTemp[24];   // im Konstruktor Initialiert
-        intValue rpm            = {0,0,9999};
-        intValue power          = {0,0,100};
-        intValue manualPower    = {0,0,100};
-        intValue startupTime    = {0,1,255};
-        intValue minPower       = {0,0,100};
-        intValue autoMode       = {0,0,1};
-        intValue stopEnabled    = {0,0,1};
-        intValue threshold      = {0,0,50};
+        intValue rpm            = {0,0,9999,Carriage(0,0,0,0)};
+        intValue power          = {0,0,100,Carriage(0,0,0,0)};
+        intValue manualPower    = {0,0,100,Carriage(0,0,0,0)};
+        intValue startupTime    = {0,1,255,Carriage(0,0,0,0)};
+        intValue minPower       = {0,0,100,Carriage(0,0,0,0)};
+        intValue autoMode       = {0,0,1,Carriage(0,0,0,0)};
+        intValue stopEnabled    = {0,0,1,Carriage(0,0,0,0)};
+        intValue threshold      = {0,0,50,Carriage(0,0,0,0)};
     public:
         Kanal();
-
+        void RequestData();
         int getManualPower();
         void setManualPower(int value);
         int getStartupTime();

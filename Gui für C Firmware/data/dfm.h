@@ -19,6 +19,7 @@ class Dfm : public Data{
         intValue pulsePerLiter; // Impulswertigkeit
         intValue minFlow;       // Alarmgrenze
     public:
+        void RequestData();
         Dfm();
     signals:
         // Changed() von parant!

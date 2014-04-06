@@ -32,6 +32,10 @@ void Lcd::ProcessData(Carriage *car){
     }
 }
 
+void Lcd::RequestData(){
+   // emit PushToHw(new Carriage(1, 78, 1, 0));
+}
+
 int Lcd::getBacklight(){
     return backlight.value;
 }

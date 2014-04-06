@@ -7,14 +7,14 @@
 class Lcd : public Data{
     Q_OBJECT
 
-    intValue backlight      = {0,0,100}; // Backlight helligkeit
-    intValue contrast       = {0,0,100}; // Kontrast
+    intValue backlight      = {0,0,100,Carriage(0,0,0,0)}; // Backlight helligkeit
+    intValue contrast       = {0,0,100,Carriage(0,0,0,0)}; // Kontrast
     intValue content[256];  // im Konstruktor Initialiert // welcher Inhalt
     intValue screens[32];   // im Konstruktor Initialiert // Wie lange in 0,5s Steps
 
 public:
     Lcd();
-
+    void RequestData();
     void updateLCD(); // Contrast + Backlight
     void updateScreens();
     void updateContent();
