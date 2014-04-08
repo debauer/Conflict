@@ -17,13 +17,26 @@ Carriage::Carriage(){
 }
 
 /*
- * Gibt String ohne <CR> zurück. Z.B. für die Debug Console oder zum senden übers Interface.
+ * Gibt String mit <CR> zurück. Z.B. für die Debug Console oder zum senden übers Interface.
  */
 
 QString Carriage::getString(){
+
+    // ID muss 2 stellig sein!
+    QString *sId = new QString;
+    if(this->id < 10){
+        sId->append("0");
+        sId->append(QString::number(this->id));
+    }else{
+        sId->append(QString::number(this->id));
+    }
+
+    // DA#id#index#value#<CR>
+    // <cr> = 0x0D
+
     return QString::number(this->direction)
             .append("#")
-            .append(QString::number(this->id))
+            .append(sId)
             .append("#")
             .append(QString::number(this->index))
             .append("#")
@@ -32,9 +45,12 @@ QString Carriage::getString(){
             .append(QString(0x0D));
 }
 
+// wer kennt toString nicht?
 QString Carriage::toString(){
     return this->getString();
 }
+
+/* Konstruktoren */
 
 Carriage::Carriage(int direction,int id, int index, QString data){
     this->set(direction,id,index,data);
@@ -48,7 +64,7 @@ Carriage::Carriage(QString str){
     this->set(str);
 }
 
-/* getter */
+/* Getter */
 
 int Carriage::getDirection(){
     return this->direction;
@@ -66,7 +82,8 @@ QString Carriage::getData(){
     return this->data;
 }
 
-/* setter */
+/* Setter */
+
 void Carriage::set(int direction,int id, int index, QString data){
     this->direction = direction;
     this->id = id;

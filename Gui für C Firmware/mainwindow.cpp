@@ -53,7 +53,13 @@ void MainWindow::connectCore(ConflictCore* core){
     QObject::connect(&core->led,&Led::Changed,[=]() { ui->ledColorRed->setValue(core->led.getRed());
                                                       ui->ledColorGreen->setValue(core->led.getGreen());
                                                       ui->ledColorBlue->setValue(core->led.getBlue());
+                                                      ui->ledModus->setCurrentIndex(core->led.getMode());
                                                     });
+//    QObject::connect(&core->dfm,&Dfm::Changed,[=]() { //ui->optionenDfmImpulse->setValue(core->dfm.get);
+//                                                    });
+    QObject::connect(&core->kanal[0],&Kanal::Changed,[=]() {
+                                                           });
+
 }
 
 void MainWindow::disconnectCore(ConflictCore* core){
@@ -87,17 +93,40 @@ void MainWindow::updateGui(ConflictCore* core,QString dataClass){
      if(dataClass == QString("led")){
         ui->console->append(QString("updateGui LED"));
      }else if (dataClass == QString("kanal1")){
-        ui->infoKanal1RPM->setText(QString::number(core->kanal[0].getRpm()));
+        //ui->infoKanal1RPM->setText(QString::number(core->kanal[0].getRpm()));
      }else if (dataClass == QString("kanal2")){
-        ui->infoKanal2RPM->setText(QString::number(core->kanal[1].getRpm()));
+        //ui->infoKanal2RPM->setText(QString::number(core->kanal[1].getRpm()));
      }else if (dataClass == QString("kanal3")){
 
-        ui->infoKanal3RPM->setText(QString::number(core->kanal[2].getRpm()));
+        //ui->infoKanal3RPM->setText(QString::number(core->kanal[2].getRpm()));
      }
 }
 
-void  MainWindow::speicherKanal(){
+void MainWindow::updateTabKanaele(int kanal){
 
+}
+
+void  MainWindow::speicherKanal(){
+    int index = ui->kanalAktiv->currentIndex();
+    Kanal* k = &aktivCore->kanal[index];
+    k->setAutoMode((int) ui->kanalAutoOn->isChecked());
+    k->setManualPower(ui->KanalManuellPower->value());
+    if(ui->KanalGrenzwertMaxAktiv){
+        if(ui->kanalGrenzwert->currentIndex() == 0)
+            k->setMaxTemp(ui->kanalGrenzwert->currentIndex()-1,ui->KanalGrenzwertMax->value());
+        else
+            k->setAllMaxTemp(ui->KanalGrenzwertMax->value());
+    }
+    if(ui->KanalGrenzwertMinAktiv){
+        if(ui->kanalGrenzwert->currentIndex() == 0)
+            k->setMinTemp(ui->kanalGrenzwert->currentIndex()-1,ui->KanalGrenzwertMin->value());
+        else
+            k->setAllMinTemp(ui->KanalGrenzwertMin->value());
+    }
+    k->setMinPower(ui->kanalAutoMinimal->value());
+    k->setStartupTime(ui->KanalStartupTime->value());
+    k->setStopEnabled((int) ui->kanalAutoCanStop->isChecked());
+    k->setThreshold(ui->kanalAutoStart->value());
 }
 
 

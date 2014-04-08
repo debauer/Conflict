@@ -47,8 +47,10 @@ class Kanal : public Data{
         void setRpm     ( int value);
         int getMaxTemp  (int tId) ;
         void setMaxTemp (int tId , int value);
+        void setAllMaxTemp (int value);
         int getMinTemp  (int tId) ;
         void setMinTemp (int tId , int value);
+        void setAllMinTemp (int value);
 signals:
     // Changed() von parant!
 public slots:

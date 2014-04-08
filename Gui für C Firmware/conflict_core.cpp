@@ -5,7 +5,6 @@ void ConflictCore::makeMapping(Data* obj, QString str){
     QObject::connect(obj, SIGNAL(Changed()),signalMapper, SLOT (map()));
     QObject::connect(this, SIGNAL(newCarriage(Carriage*)),obj ,SLOT(ProcessData(Carriage*)));
     QObject::connect(obj, SIGNAL(PushToHw(Carriage*)),this,SLOT(sendCarriage(Carriage*)));
-    //QObject::connect(this, SIGNAL(syncData()),obj,SLOT(RequestData()));
 }
 
 
@@ -29,7 +28,7 @@ ConflictCore::ConflictCore(){
 
     QObject::connect(signalMapper, SIGNAL(mapped(QString)),this, SLOT(ChangedData(QString)));
 
-    QObject::connect(this, SIGNAL(syncData()),&led,SLOT(RequestData());
+    QObject::connect(this, SIGNAL(syncData()),&led,SLOT(RequestData()));
 }
 
 void ConflictCore::connectSerial(int port){
@@ -49,8 +48,9 @@ void ConflictCore::connectInterface(QString str){
     if(this->interface->IsOpen()){
         this->interfaceOpen = true;
         this->printDebug(QString("Interface Open"));
-        emit this->syncData();
         this->printDebug(QString("Sync Data"));
+        Carriage *car = new Carriage(1,0,0,0);
+        this->sendCarriage(car);
     }
 }
 
@@ -64,7 +64,6 @@ void ConflictCore::disconnect(){
 
 void ConflictCore::restart(){
     this->printDebug(QString("restart"));
-    emit this->syncData();
     interface->SendString((new Carriage(0,1,170,85))->toString());
 }
 

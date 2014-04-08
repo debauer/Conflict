@@ -132,10 +132,24 @@ void Kanal::setMaxTemp(int tId ,int value){
     SetValue (&maxTemp[tId], value);
 }
 
+void Kanal::setAllMaxTemp(int value){
+    int i;
+    for(i = 0; i<24;i++){
+        SetValue (&maxTemp[i], value);
+    }
+}
+
 int Kanal::getMinTemp(int tId){
     return minTemp[tId].value;
 }
 
 void Kanal::setMinTemp(int tId ,int value){
     SetValue (&minTemp[tId], value);
+}
+
+void Kanal::setAllMinTemp(int value){
+    int i;
+    for(i = 0; i<24;i++){
+        SetValue (&minTemp[i], value);
+    }
 }

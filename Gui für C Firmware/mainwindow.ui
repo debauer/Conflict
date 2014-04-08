@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>570</height>
+    <width>465</width>
+    <height>314</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,261 +30,20 @@
     <property name="horizontalSpacing">
      <number>6</number>
     </property>
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="Temperaturen">
+    <item row="0" column="1">
+     <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tabInfo">
        <attribute name="title">
-        <string>Info</string>
+        <string>Dash</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="1">
-         <widget class="QGroupBox" name="infoKanal1Box">
-          <property name="maximumSize">
-           <size>
-            <width>160</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Kanal 1</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_9">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="infoKanal1RPM">
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>1200 RPM</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="infoKanal1Prozent">
-             <property name="text">
-              <string>33%</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QGroupBox" name="infoDurchflussBox">
-          <property name="maximumSize">
-           <size>
-            <width>160</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Durchfluss</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="infoDurchfluss">
-             <property name="text">
-              <string>22 l/h</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QGroupBox" name="infoKanal3Box">
-          <property name="maximumSize">
-           <size>
-            <width>160</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Kanal 3</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_7">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="infoKanal3RPM">
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>1200 RPM</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="infoKanal3Prozent">
-             <property name="text">
-              <string>12%</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QGroupBox" name="infoAnalogBox">
-          <property name="maximumSize">
-           <size>
-            <width>160</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Analog / Pumpe</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="infoAnalog">
-             <property name="text">
-              <string>8V</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QGroupBox" name="infoFirmwareBox">
-          <property name="maximumSize">
-           <size>
-            <width>160</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Firmware Version</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_10">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="infoFirmware">
-             <property name="text">
-              <string>2.0.1</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QGroupBox" name="infoKanal2Box">
-          <property name="maximumSize">
-           <size>
-            <width>160</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Kanal 2</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_8">
-           <item row="0" column="0">
-            <widget class="QLineEdit" name="infoKanal2RPM">
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>1200 RPM</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="infoKanal2Prozent">
-             <property name="text">
-              <string>50%</string>
-             </property>
-             <property name="frame">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0" rowspan="8">
-         <widget class="QGroupBox" name="infoTemperaturenBox">
-          <property name="title">
-           <string>Temperaturen</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-          </property>
-          <layout class="QGridLayout" name="infoTemperaturenBoxLayout"/>
-         </widget>
-        </item>
-       </layout>
+       <layout class="QGridLayout" name="gridLayout_2"/>
       </widget>
       <widget class="QWidget" name="tabKanal1">
        <attribute name="title">
-        <string>Kanal 1</string>
+        <string>Kanäle</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_11">
         <item row="5" column="1">
@@ -471,7 +230,7 @@
             </widget>
            </item>
            <item row="1" column="3">
-            <widget class="QCheckBox" name="checkBox">
+            <widget class="QCheckBox" name="KanalGrenzwertMinAktiv">
              <property name="maximumSize">
               <size>
                <width>20</width>
@@ -487,7 +246,7 @@
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QCheckBox" name="checkBox_2">
+            <widget class="QCheckBox" name="KanalGrenzwertMaxAktiv">
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
              </property>
@@ -516,7 +275,7 @@
             </widget>
            </item>
            <item row="1" column="1" colspan="2">
-            <widget class="QSpinBox" name="KanalTemperaturMin">
+            <widget class="QSpinBox" name="KanalGrenzwertMin">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -532,10 +291,10 @@
             </widget>
            </item>
            <item row="2" column="1" colspan="2">
-            <widget class="QSpinBox" name="KanalTemperaturMin_2"/>
+            <widget class="QSpinBox" name="KanalGrenzwertMax"/>
            </item>
            <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="kanalTemperaturAktiv">
+            <widget class="QComboBox" name="kanalGrenzwert">
              <item>
               <property name="text">
                <string>Alle</string>
@@ -636,102 +395,91 @@
         <string>Temperaturen</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_32">
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="temperaturBox">
+        <item row="0" column="1" alignment="Qt::AlignTop">
+         <widget class="QGroupBox" name="groupBox_9">
           <property name="title">
-           <string>Temperaturen</string>
+           <string>Ersatz Temperatur</string>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-          </property>
-          <layout class="QGridLayout" name="temperaturBoxLayout">
-           <item row="0" column="1">
-            <widget class="QLabel" name="label_36">
-             <property name="maximumSize">
-              <size>
-               <width>20</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QLabel" name="label_34">
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Temperatur</string>
-             </property>
-            </widget>
-           </item>
+          <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="2">
-            <widget class="QLabel" name="label_33">
-             <property name="maximumSize">
-              <size>
-               <width>30</width>
-               <height>16777215</height>
-              </size>
-             </property>
+            <widget class="QLabel" name="label_9">
              <property name="text">
-              <string>Name</string>
+              <string>Temperatur 18</string>
              </property>
             </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Temperatur 20</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="tempErsatz17"/>
            </item>
            <item row="0" column="0">
-            <widget class="QLabel" name="label_32">
-             <property name="maximumSize">
-              <size>
-               <width>20</width>
-               <height>16777215</height>
-              </size>
-             </property>
+            <widget class="QLabel" name="label_8">
              <property name="text">
-              <string>Nr.</string>
+              <string>Temperatur 17</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="7">
-            <spacer name="horizontalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="tempErsatz19"/>
            </item>
-           <item row="0" column="4">
-            <widget class="QLabel" name="label_35">
-             <property name="maximumSize">
-              <size>
-               <width>150</width>
-               <height>16777215</height>
-              </size>
-             </property>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_12">
              <property name="text">
-              <string>Adressen / Aida</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <string>Temperatur 23</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="5">
-            <widget class="QLabel" name="label_37">
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_11">
              <property name="text">
-              <string>Ersatztemperatur</string>
+              <string>Temperatur 21</string>
              </property>
             </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Temperatur 19</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>Temperatur 22</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>Temperatur 24</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="tempErsatz23"/>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="tempErsatz21"/>
+           </item>
+           <item row="0" column="3">
+            <widget class="QSpinBox" name="tempErsatz18"/>
+           </item>
+           <item row="1" column="3">
+            <widget class="QSpinBox" name="tempErsatz20"/>
+           </item>
+           <item row="2" column="3">
+            <widget class="QSpinBox" name="tempErsatz22"/>
+           </item>
+           <item row="3" column="3">
+            <widget class="QSpinBox" name="tempErsatz24"/>
            </item>
           </layout>
          </widget>
@@ -740,7 +488,7 @@
       </widget>
       <widget class="QWidget" name="tabLED">
        <attribute name="title">
-        <string>LED</string>
+        <string>RGB LED</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
@@ -987,13 +735,6 @@ border-radius: 4px;
              </property>
             </widget>
            </item>
-           <item row="5" column="0">
-            <widget class="QPushButton" name="colorPicker">
-             <property name="text">
-              <string>Farbe &quot;picken&quot;</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
@@ -1005,7 +746,7 @@ border-radius: 4px;
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>40</height>
+            <height>0</height>
            </size>
           </property>
          </spacer>
@@ -1357,6 +1098,22 @@ border-radius: 4px;
         <string>Über</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Kommunikation</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_16">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="debug">
+             <property name="textInteractionFlags">
+              <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
@@ -1385,26 +1142,10 @@ p, li { white-space: pre-wrap; }
           </layout>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Debug</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_16">
-           <item row="0" column="0">
-            <widget class="QTextEdit" name="debug">
-             <property name="textInteractionFlags">
-              <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="2" column="0">
+        <item row="0" column="1" rowspan="2">
          <widget class="QGroupBox" name="groupBox_7">
           <property name="title">
-           <string>Console</string>
+           <string>Debug Output</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_21">
            <item row="0" column="0">
@@ -1421,6 +1162,19 @@ p, li { white-space: pre-wrap; }
       </widget>
      </widget>
     </item>
+    <item row="1" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -1428,7 +1182,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>465</width>
      <height>21</height>
     </rect>
    </property>
